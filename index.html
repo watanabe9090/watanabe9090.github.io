@@ -5,8 +5,193 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=\, initial-scale=1.0">
   <title>Resume</title>
+
+<style>
+.navbar {
+	height: 60%;
+	width: 20%;
+
+	top:0;
+	left: 0;
+
+	position: fixed;
+
+	margin-top: 10px;
+	margin-left: 0px;
+	margin-left: 10px;
+	margin-bottom: 0px;
+
+	padding-top: 20px;
+	padding-right: 0px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+
+	background-color: #282a36;
+
+	border-radius: 30px;
+
+	z-index: 1;
+
+}
+.navbar__item {
+	text-decoration: none;
+	color: #f8f8f2;
+	display: block;
+	cursor: pointer;
+	transition: 300ms;
+
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-right: 10px;
+	margin-bottom: 0px;
+
+	padding: 20px;
+
+	border-radius: 30px;
+}
+.navbar__item:hover {
+	background-color: #44475a;
+}
+
+.main {
+	width: 75%;
+	margin-left: 25%;
+	border: #282a36 1px solid;
+
+	display: table;
+
+	background-color: #282a36;
+}
+.main__row {
+	display: table-row;
+}
+
+.main__row__cell {
+	display: table-cell;
+	color: #f8f8f2;
+	border-right: #f8f8f2 1px solid;
+	padding-left: 100px;
+}
+code {
+	color: #ff79c6;
+	font-size: large;
+}
+
+select {
+	border:none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -ms-appearance: none; /* get rid of default appearance for IE8, 9 and 10*/
+
+	background-color: #282a36;
+	color: #f8f8f2;
+	text-decoration: none;
+}
+</style>
 </head>
+
 <body>
-  
+  <div id="header">
+
+  </div>
+
+	<div class="navbar">
+		<a class="navbar__item" id="personal_informations" onclick="console.log(this)"></a>
+		<a class="navbar__item" id="projects"></a>
+		<a class="navbar__item" id="technologies"></a>
+		<a class="navbar__item" id="social_media"></a>
+		<div class="navbar__item">
+			<label id="language_label"></label>
+			<select onchange="changeLanguage(this.value)">
+				<option id="english" value="en"></option>
+				<option id="portuguese" value="pt-br"></option>
+				<option id="japanese" value="ja"></option>
+			</select>
+		</div>	
+	</div>
+
+	<div class="main">
+		<div id=""  class="main__row">
+			<div class="main__row__cell">
+				<h2 id="personal_label"></h2>
+				<code>System.out.println(fullName);</code>
+				<p id="full_name"></p>
+				<code>System.out.println(age);</code>
+				<p id="age"></p>
+			</div>
+
+			<div class="main__row__cell">
+				<h2 id="academic_label"></h2>
+				<code>System.out.println(college);</code>
+				<p id="college"></p>
+				<code>System.out.println(course);</code>
+				<p id="course"></p>
+			</div>
+		</div>
+
+		
+	</div>
+
+
+  <div id="footer">
+
+  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	var language;
+	// Reference : https://stackoverflow.com/questions/46008760/how-to-build-multiple-language-website-using-pure-html-js-jquery
+	function getLanguage() {
+		(localStorage.getItem('language') == null ? setLanguage('en') : false )
+		console.log()
+		$.ajax({
+			url: '/languages/' + localStorage.getItem('language') + '.json',
+			dataType: 'json', async: false, dataType: 'json',
+			success: (result) => {language = result}
+		});
+	}
+	function setLanguage(lang) {
+		localStorage.setItem('language', lang);
+	}
+
+	function changeLanguage(lang) {
+		setLanguage(lang);
+		getLanguage();
+		setText();
+	}
+
+	function setText() {
+		var out = '>> ';
+		// Navbar
+		$('#personal_informations').text(language.navbar.personal_information);
+		$('#projects').text(language.navbar.projects);
+		$('#technologies').text(language.navbar.technologies);
+		$('#social_media').text(language.navbar.social_media);
+		$('#language_label').text(language.navbar.language.label + ': ');
+		$('#english').text(language.navbar.language.english);
+		$('#portuguese').text(language.navbar.language.portuguese);
+		$('#japanese').text(language.navbar.language.japanese);
+
+		// Personal Informations
+		// Academic right
+		$('#personal_label').text(language.personal_information.personal_label);
+		$('#full_name').text(out + language.personal_information.full_name);
+		$('#age').text(out + language.personal_information.age);
+
+		// Person Left
+		$('#academic_label').text(language.personal_information.academic_label);
+		$('#college').text(out + language.personal_information.education.college);
+		$('#course').text(out + language.personal_information.education.course);
+	}
+
+</script>
+<script>
+
+</script>
+<script>
+	getLanguage();
+	$(document).ready(() => setText())
+
+</script>
 </body>
 </html>

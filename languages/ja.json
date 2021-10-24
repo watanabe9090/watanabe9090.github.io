@@ -1,0 +1,35 @@
+{
+    "navbar": {
+        "personal_information": "Informações Pessoais",
+        "projects": "Projetos",
+        "technologies": "Tecnologias",
+        "social_media": "Redes Sociais",
+        "language": {
+            "label": "Linguagem",
+            "english": "Inglês",
+            "portuguese": "Portugês",
+            "japanese": "Japonês"
+        }
+    },
+    "personal_information": {
+        "academic_label": "学問的情報",
+        "personal_label": "個人的情報",
+        "full_name": "渡辺ユリ",
+        "education":  {
+            "college" :"Faculdade de Técnologia de São Paulo FATEC-SP",
+            "course": "システム分析と開発"
+        },
+        "age": 20
+        
+    },
+    "technologies": {
+        
+
+    },
+    "header": {
+
+    },
+    "footer": {
+
+    }
+}
