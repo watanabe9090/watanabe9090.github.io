@@ -4,103 +4,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=\, initial-scale=1.0">
+  <link rel="stylesheet" href="estilo.css">
   <title>Resume</title>
 
-<style>
-.navbar {
-	height: 60%;
-	width: 20%;
 
-	top:0;
-	left: 0;
-
-	position: fixed;
-
-	margin-top: 10px;
-	margin-left: 0px;
-	margin-left: 10px;
-	margin-bottom: 0px;
-
-	padding-top: 20px;
-	padding-right: 0px;
-	padding-left: 10px;
-	padding-bottom: 10px;
-
-	background-color: #282a36;
-
-	border-radius: 30px;
-
-	z-index: 1;
-
-}
-.navbar__item {
-	text-decoration: none;
-	color: #f8f8f2;
-	display: block;
-	cursor: pointer;
-	transition: 300ms;
-
-	margin-top: 10px;
-	margin-left: 20px;
-	margin-right: 10px;
-	margin-bottom: 0px;
-
-	padding: 20px;
-
-	border-radius: 30px;
-}
-.navbar__item:hover {
-	background-color: #44475a;
-}
-
-.main {
-	width: 75%;
-	margin-left: 25%;
-	border: #282a36 1px solid;
-
-	display: table;
-
-	background-color: #282a36;
-}
-.main__row {
-	display: table-row;
-}
-
-.main__row__cell {
-	display: table-cell;
-	color: #f8f8f2;
-	border-right: #f8f8f2 1px solid;
-	padding-left: 100px;
-}
-code {
-	color: #ff79c6;
-	font-size: large;
-}
-
-select {
-	border:none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -ms-appearance: none; /* get rid of default appearance for IE8, 9 and 10*/
-
-	background-color: #282a36;
-	color: #f8f8f2;
-	text-decoration: none;
-}
-</style>
 </head>
 
 <body>
   <div id="header">
-
   </div>
 
 	<div class="navbar">
-		<a class="navbar__item" id="personal_informations" onclick="console.log(this)"></a>
-		<a class="navbar__item" id="projects"></a>
-		<a class="navbar__item" id="technologies"></a>
-		<a class="navbar__item" id="social_media"></a>
+		<a class="navbar__item" id="personal_informations" onclick="changeContent(this.id)"></a>
+		<a class="navbar__item" id="projects" onclick="changeContent(this.id)"></a>
+		<a class="navbar__item" id="technologies" onclick="changeContent(this.id)"></a>
+		<a class="navbar__item" id="work_experience" onclick="changeContent(this.id)"></a>
+		<a class="navbar__item" id="social_media" onclick="changeContent(this.id)"></a>
 		<div class="navbar__item">
 			<label id="language_label"></label>
 			<select onchange="changeLanguage(this.value)">
@@ -111,8 +30,12 @@ select {
 		</div>	
 	</div>
 
+	<div class="tab__content">
+		
+	</div>
+
 	<div class="main">
-		<div id=""  class="main__row">
+		<div id="personal_informations_content"  class="main__row">
 			<div class="main__row__cell">
 				<h2 id="personal_label"></h2>
 				<code>System.out.println(fullName);</code>
@@ -120,7 +43,6 @@ select {
 				<code>System.out.println(age);</code>
 				<p id="age"></p>
 			</div>
-
 			<div class="main__row__cell">
 				<h2 id="academic_label"></h2>
 				<code>System.out.println(college);</code>
@@ -128,6 +50,21 @@ select {
 				<code>System.out.println(course);</code>
 				<p id="course"></p>
 			</div>
+		</div>
+
+
+		<div id="projects_content" class="main__row">
+			
+		</div>
+
+
+		<div id="technologies_content" class="main__row">
+			
+		</div>
+
+
+		<div id="social_media_content" class="main__row">
+			
 		</div>
 
 		
@@ -166,6 +103,7 @@ select {
 		$('#personal_informations').text(language.navbar.personal_information);
 		$('#projects').text(language.navbar.projects);
 		$('#technologies').text(language.navbar.technologies);
+		$('#work_experience').text(language.navbar.work_experience);
 		$('#social_media').text(language.navbar.social_media);
 		$('#language_label').text(language.navbar.language.label + ': ');
 		$('#english').text(language.navbar.language.english);
@@ -186,10 +124,18 @@ select {
 
 </script>
 <script>
-
+	function changeContent(contentId) {
+		var block = '#' + contentId + '_content';
+		var blocks = $(".main__row");
+		for(var i = 0; i < blocks.length; i++) {
+			$('#'+blocks[i].id).css("visibility", "collapse");
+		}
+		$(block).css("visibility", "visible");
+	}
 </script>
 <script>
 	getLanguage();
+	changeContent("personal_informations")
 	$(document).ready(() => setText())
 
 </script>
