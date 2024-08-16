@@ -1,0 +1,337 @@
+:root {
+  --t-green: #4fe310;
+  --t-red: #db2745;
+  --t-yellow: #f8ee65;
+
+  --t-text: whitesmoke;
+  --t-background: #4d4c4c;
+
+  @media only screen and (min-width: 768px) {
+  }
+  @media only screen and (min-width: 1280px) {
+  }
+}
+
+@font-face {
+  font-family: "HackNerd";
+  src: url("./assets/HackNerdFont-Regular.ttf");
+  font-weight: normal;
+}
+
+
+
+@mixin flex($justify-content: center) {
+  display: flex;
+  align-items: center;
+  justify-content: $justify-content;
+}
+@mixin grid($justify-items: center) {
+  display: grid;
+  justify-items: $justify-items;
+  align-content: center;
+}
+@mixin absolute {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+@mixin font-md {
+  font-size: medium;
+  font-weight: 600;
+}
+
+@mixin container {
+  @media only screen and (min-width: 768px) {
+  }
+  @media only screen and (min-width: 1280px) {
+  }
+}
+
+$mobile: 640px;
+
+$tablet: 1024px;
+
+
+
+$bg: #2b2b2b;
+$sm-shadow: 5px 5px 8px rgb(44, 44, 44);
+$md-shadow: 8px 8px 10px rgb(44, 44, 44);
+
+$radius-sm: 5px;
+
+
+$text: whitesmoke;
+$bg-terminal: rgba(56, 56, 56, 0.98);
+$bg-terminal-bar: #292828;
+
+$duration-lg: .5s;
+$duration-md: .3s;
+$duration-sm: .2s;
+
+
+.bg {
+  &--red {
+    background-color: var(--t-red);
+  }
+  &--green {
+    background-color: var(--t-green);
+  }
+  &--yellow {
+    background-color: var(--t-yellow);
+  }
+}
+.t {
+  &-green {
+    color: #4fe310;
+  }
+  &-red {
+    color: #db2745;
+  }
+  &-yellow {
+    color: #f8ee65;
+  }
+  &-white {
+    color: whitesmoke;
+  }
+  &-blue {
+    color: #0c82cc;
+  }
+}
+
+
+
+a {
+  all: unset;
+}
+body {
+  font-family: HackNerd;
+  background-color: $bg;
+  overflow: hidden;
+}
+
+.terminal {
+  @include absolute;
+  @include font-md;
+  color: $text;
+  border-radius: $radius-sm;
+  box-shadow: $md-shadow;
+
+  width: 680px;
+  height: 600px;
+  overflow: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @media only screen and (max-width: $mobile) {
+    top: 0px !important;
+    left: 0px !important;
+    width: 100%;
+    height: 80vh;
+  }
+
+  & p::selection {
+    background-color: $text;
+    color: $bg-terminal;
+  }
+  
+  &--show {
+    animation-name: showAnimation;
+    animation-duration: 0.3s;
+    visibility: visible;
+    opacity: 1;
+  }
+  &--hide {
+    animation-name: hideAnimation;
+    animation-duration: 0.3s;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.terminal::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+
+@keyframes hideAnimation {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    top: var(--data-hide-position-top);
+    left: var(--data-hide-position-left);
+    transform: scale(0.01);
+  }
+}
+@keyframes showAnimation {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    top: var(--data-hide-position-top);
+    left: var(--data-hide-position-left);
+    transform: scale(0.01);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+}
+
+
+.terminal__bar {
+  @include grid;
+  background-color: $bg-terminal-bar;
+
+  position: fixed;
+  width: 680px;
+  height: 20px;
+
+
+  user-select: none;
+
+  grid-template-columns: 10fr 1fr;
+  border-radius: 5px 5px 0px 0px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: small;
+
+  @media only screen and (max-width: $mobile) {
+    width: 100%;
+  }
+
+  &__title {
+    @include flex;
+  }
+
+  &__buttons-group {
+    @include flex;
+    column-gap: 10px;
+    margin-right: 0.5rem;
+  }
+
+  &__button {
+    border-radius: 100%;
+    width: 1em;
+    height: 1em;
+    transition-duration: 0.15s;
+
+    &:hover {
+      filter: brightness(0.4);
+    }
+  }
+}
+
+.terminal__body {
+  padding-top: 40px;
+  padding-bottom: 8px;
+  background-color: $bg-terminal;
+}
+
+.apps-bar {
+  box-shadow: $md-shadow;
+
+  user-select: none;
+
+  display: flex;
+  column-gap: 0.5rem;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--t-background);
+  border-radius: $radius-sm;
+
+  &__icon {
+    cursor: pointer;
+    @include flex;
+    background-color: var(--t-text);
+    border-radius: $radius-sm;;
+    padding: 0.25rem;
+    width: 3rem;
+    height: 3rem;
+
+    @media only screen and (max-width: $mobile) {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &:hover, &:active {
+      // color: $bg;
+      background-color: white;
+      transform: scale(1.1);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}
+
+// Cursor related props
+.cursor {
+  background-color: var(--t-text);
+  animation: cursorBlink 1s infinite;
+}
+@keyframes cursorBlink {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: whitesmoke;
+  }
+}
+
+.logo {
+  @include flex;
+  flex-wrap: wrap;
+
+  user-select: none;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  font-weight: 900;
+  font-size: xx-large;
+  color: whitesmoke;
+
+  @media only screen and (max-width: $mobile) {
+    font-size: small;
+  }
+  @media only screen and (max-width: $tablet) {
+    font-size: large;
+  }
+}
+
+#clock {
+  @include font-md;
+  background-color: $bg-terminal;
+  border-radius: $radius-sm;;
+  color: $text;
+  z-index: -1;
+  padding: 0.5rem;
+  bottom: 1rem;
+  right: 1rem;
+  position: absolute;
+
+  @media only screen and (max-width: $mobile) {
+    display: none;
+  }
+}
+
+.tooltip {
+  @include absolute;
+  @include font-md;
+  background-color: $text;
+  color: $bg-terminal;
+  border-radius: $radius-sm;
+  box-shadow: $sm-shadow;
+  padding: 1rem;
+  z-index: 99;
+}

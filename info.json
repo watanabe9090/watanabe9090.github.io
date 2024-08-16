@@ -1,0 +1,44 @@
+[
+  {
+    "langs": ["default", "pt", "pt-BR"],
+    "sections": [
+      {
+        "title": "Informações",
+        "rows": [
+          "Nome: Yuri Takae Watanabe",
+          "Formação: Formado em ADS na FATEC SP",
+          "Título: Desenvolvedor Java/React Full-stack",
+          "Linkedin: https://www.linkedin.com/in/yuri-watanabe-37780b201/",
+          "---",
+          "Desenvolvedor full stack com 3 anos de experiência em aplicações Java/React para Web, formado em ADS na Fatec SP, entusiasta do mundo Linux, sempre em busca de simplificações e melhores designs de soluções.",
+          "---",
+          "Experiência em desenvolvimento de APIs, web-services e integrações para soluções empresariais do tipo CMSs e DAMs da OpenText(WEM/OTMM)/Adobe(AEM)."
+        ]
+      },
+      {
+        "title": "Experiências",
+        "align": "center",
+        "rows": [
+          "＊　Integrações e desenvolvimento para a tecnologia OTMM (Open Text Media Manager - DAM) utilizando Java.",
+          "＊　Desenvolvimento para OT WEM (Open Text Web Experience Manager) com Java/Spring.",
+          "＊　Atividades de troubleshooting e monitoramento em servidores linux.",
+          "＊　Desenvolvimento de componentes editáveis com Java e React para utilização no CMS AEM (Adobe Experience Manager).",
+          "＊　Desenvolvimento de batches e APIs com Spring para integrar com APIs e mensagerias de sistemas terceiros, arquitetado para rodar em ambiente Kubernetes.",
+          "＊　Desenvolvimento e manutenção de sites com HTML, CSS, JS, JQuery/Ajax.",
+          "＊　Uso de Docker para configuração de ambientes, criação de serviços e realização de testes.",
+          "＊　Criação de testes e documentação de serviços/integrações"
+        ]
+      },
+      {
+        "title": "Certificados e Certificações",
+        "rows": ["＊　Adobe Experience Manager Assets ADO 129"]
+      },
+      {
+        "title": "Tecnologias",
+          "rows": [
+          "Java, Node, Spring, Docker, React/Next, Nginx, Apache, Linux, PostgreSQL,  MongoDB, HTML, CSS e JS"
+        ]
+      }
+    ]
+  }
+]

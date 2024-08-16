@@ -1,0 +1,21 @@
+{
+  "name": "curriculum-vitae",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "dev": "nodemon --watch index.html --watch index.scss --watch src --watch info.json --watch build.js build.js --prd",
+    "build": "node build.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clean-css": "^5.3.3",
+    "html-minifier": "^4.0.0",
+    "sass": "^1.77.8",
+    "uglify-js": "^3.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
